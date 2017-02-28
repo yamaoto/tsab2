@@ -31,8 +31,8 @@ namespace Rikka.Tsab2.Endpoint
         {
             #region database
             var connection = Configuration["Database:ConnectionStrings:DefaultDatabase"];
-            var password = Configuration["Database:Passwords:DefaultDatabase"];
-            connection = string.Format(connection, password);
+            //var password = Configuration["Database:Passwords:DefaultDatabase"];
+            //connection = string.Format(connection, password);
             services.AddDbContext<TsabContext>(options => options.UseSqlServer(connection));
             #endregion
 

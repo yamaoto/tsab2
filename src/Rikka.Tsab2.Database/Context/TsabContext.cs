@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Rikka.Tsab2.Database.Context.Entities;
 
 namespace Rikka.Tsab2.Database.Context
@@ -13,6 +14,16 @@ namespace Rikka.Tsab2.Database.Context
         public TsabContext(DbContextOptions options):base(options)
         {
             
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<VkPhoto>()
+                .HasOne<VkWall>(p => p.Wall)
+                .WithMany(w => w.Photos)
+                .HasForeignKey(f => f.WallId)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
 
         public DbSet<Chat> Chat { get; set; }

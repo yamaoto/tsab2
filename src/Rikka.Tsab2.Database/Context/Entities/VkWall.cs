@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rikka.Tsab2.Database.Context.Entities
@@ -13,6 +14,7 @@ namespace Rikka.Tsab2.Database.Context.Entities
 
     public class Chat : IEntity
     {
+        [Key]
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
 
@@ -28,6 +30,7 @@ namespace Rikka.Tsab2.Database.Context.Entities
 
     public class VkWall: IEntity
     {
+        [Key]
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
 
@@ -44,6 +47,7 @@ namespace Rikka.Tsab2.Database.Context.Entities
 
     public class VkWallEntry: IEntity
     {
+        [Key]
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
 
@@ -58,6 +62,7 @@ namespace Rikka.Tsab2.Database.Context.Entities
 
     public class VkPhoto: IEntity
     {
+        [Key]
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
 
@@ -75,6 +80,7 @@ namespace Rikka.Tsab2.Database.Context.Entities
 
     public class VkAuth:IEntity
     {
+        [Key]
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
 
@@ -90,6 +96,7 @@ namespace Rikka.Tsab2.Database.Context.Entities
 
     public class SearchEngine:IEntity
     {
+        [Key]
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
 
