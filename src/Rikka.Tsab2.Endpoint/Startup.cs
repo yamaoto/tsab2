@@ -4,10 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 using Rikka.TelegramBotCore;
 using Rikka.Tsab2.Core.Services;
 using Rikka.Tsab2.Database.Context;
 using Rikka.Tsab2.Database.Repositories;
+using Rikka.Tsab2.Endpoint.App.Filters;
 
 namespace Rikka.Tsab2.Endpoint
 {
@@ -20,7 +22,7 @@ namespace Rikka.Tsab2.Endpoint
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddJsonFile("database.password.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("password.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -31,8 +33,8 @@ namespace Rikka.Tsab2.Endpoint
         {
             #region database
             var connection = Configuration["Database:ConnectionStrings:DefaultDatabase"];
-            //var password = Configuration["Database:Passwords:DefaultDatabase"];
-            //connection = string.Format(connection, password);
+            var password = Configuration["Database:Passwords:DefaultDatabase"];
+            connection = string.Format(connection, password);
             services.AddDbContext<TsabContext>(options => options.UseSqlServer(connection));
             #endregion
 
@@ -47,6 +49,7 @@ namespace Rikka.Tsab2.Endpoint
 
             #region services
             services.AddTransient<ISearchService, SearchService>();
+            services.AddTransient<ExceptionFilter>();
             #endregion
 
             #region bot
@@ -56,14 +59,21 @@ namespace Rikka.Tsab2.Endpoint
             services.AddTransient<IBotService, BotService>();
             #endregion bot
 
-            services.AddMvc();
+            //services.AddRouting();
+            services.AddMvc()
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
             services.AddSingleton(_ => Configuration);
 
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseStaticFiles();
+            app.UseMvc();
+            app.UseDeveloperExceptionPage();
             loggerFactory.AddConsole();
+            loggerFactory.AddDebug();
+            loggerFactory.AddFile("Logs/tsab2-{Date}.txt");
         }
     }
 }

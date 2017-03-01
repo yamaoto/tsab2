@@ -1,0 +1,278 @@
+2017-02-28T22:02:25.5974767+09:00 0HL2VR85E2OJK [INF] Request starting HTTP/1.1 DEBUG http://localhost:62653/  0 (e5be5b71)
+2017-02-28T22:02:25.5974767+09:00 0HL2VR85E2OJJ [INF] Request starting HTTP/1.1 GET http://localhost:62653/   (e5be5b71)
+2017-02-28T22:02:25.8275291+09:00 0HL2VR85E2OJK [INF] Request finished in 285.3826ms 200  (15c52c40)
+2017-02-28T22:02:26.2146140+09:00 0HL2VR85E2OJJ [INF] Request finished in 714.2251ms 404  (15c52c40)
+2017-02-28T22:03:00.0211511+09:00 0HL2VR85E2OJL [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram application/json 2 (e5be5b71)
+2017-02-28T22:03:00.3347997+09:00 0HL2VR85E2OJL [ERR] Connection id ""0HL2VR85B37EQ"": An unhandled exception was thrown by the application. (8c14976b)
+System.InvalidOperationException: No service for type 'Rikka.Tsab2.Endpoint.App.Filters.ExceptionFilter' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.AspNetCore.Mvc.ServiceFilterAttribute.CreateInstance(IServiceProvider serviceProvider)
+   at Microsoft.AspNetCore.Mvc.Internal.DefaultFilterProvider.ProvideFilter(FilterProviderContext context, FilterItem filterItem)
+   at Microsoft.AspNetCore.Mvc.Internal.DefaultFilterProvider.OnProvidersExecuting(FilterProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache.GetFilters(ActionContext actionContext, List`1 filterItems)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerCache.GetState(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker..ctor(ControllerActionInvokerCache cache, IControllerFactory controllerFactory, IControllerArgumentBinder controllerArgumentBinder, ILogger logger, DiagnosticSource diagnosticSource, ActionContext actionContext, IReadOnlyList`1 valueProviderFactories, Int32 maxModelValidationErrors)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvokerProvider.OnProvidersExecuting(ActionInvokerProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionInvokerFactory.CreateInvoker(ActionContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Internal.MvcAttributeRouteHandler.<>c__DisplayClass12_0.<RouteAsync>b__0(HttpContext c)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware.<Invoke>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Hosting.Internal.RequestServicesContainerMiddleware.<Invoke>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame`1.<RequestProcessingAsync>d__2.MoveNext()
+2017-02-28T22:03:00.3393150+09:00 0HL2VR85E2OJL [INF] Request finished in 317.0514ms 200  (15c52c40)
+2017-02-28T22:04:10.6575120+09:00 0HL2VR94NV0LL [INF] Request starting HTTP/1.1 GET http://localhost:62653/   (e5be5b71)
+2017-02-28T22:04:10.6575120+09:00 0HL2VR94NV0LK [INF] Request starting HTTP/1.1 DEBUG http://localhost:62653/  0 (e5be5b71)
+2017-02-28T22:04:10.7995225+09:00 0HL2VR94NV0LK [INF] Request finished in 174.42ms 200  (15c52c40)
+2017-02-28T22:04:11.2089492+09:00 0HL2VR94NV0LL [INF] Request finished in 614.8012ms 404  (15c52c40)
+2017-02-28T22:04:17.6870695+09:00 0HL2VR94NV0LM [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram application/json 2 (e5be5b71)
+2017-02-28T22:04:44.5827552+09:00 0HL2VR94NV0LM [ERR] Sequence contains no matching element (c67a310a)
+System.InvalidOperationException: Sequence contains no matching element
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Rikka.Tsab2.Core.Services.BotService..ctor(IBotApi botapi, IBotActionsService botActionsService) in C:\Projects\Rikka\Tsab2\src\Rikka.Tsab2.Core\Services\BotService.cs:line 39
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, ServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitTransient(TransientCallSite transientCallSite, ServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.<>c__DisplayClass16_0.<RealizeService>b__0(ServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Internal.TypeActivatorCache.CreateInstance[TInstance](IServiceProvider serviceProvider, Type implementationType)
+   at Microsoft.AspNetCore.Mvc.Controllers.DefaultControllerFactory.CreateController(ControllerContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAllActionFiltersAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeExceptionFilterAsync>d__25.MoveNext()
+2017-02-28T22:04:44.8931789+09:00 0HL2VR94NV0LM [ERR] Connection id ""0HL2VR94LRI2P"": An unhandled exception was thrown by the application. (8c14976b)
+System.InvalidOperationException: Sequence contains no matching element
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Rikka.Tsab2.Core.Services.BotService..ctor(IBotApi botapi, IBotActionsService botActionsService) in C:\Projects\Rikka\Tsab2\src\Rikka.Tsab2.Core\Services\BotService.cs:line 39
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, ServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitTransient(TransientCallSite transientCallSite, ServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.<>c__DisplayClass16_0.<RealizeService>b__0(ServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Internal.TypeActivatorCache.CreateInstance[TInstance](IServiceProvider serviceProvider, Type implementationType)
+   at Microsoft.AspNetCore.Mvc.Controllers.DefaultControllerFactory.CreateController(ControllerContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAllActionFiltersAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeExceptionFilterAsync>d__25.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAsync>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware.<Invoke>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Hosting.Internal.RequestServicesContainerMiddleware.<Invoke>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame`1.<RequestProcessingAsync>d__2.MoveNext()
+2017-02-28T22:04:44.8970482+09:00 0HL2VR94NV0LM [INF] Request finished in 27209.287ms 200  (15c52c40)
+2017-02-28T22:05:30.4247711+09:00 0HL2VR94NV0LN [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram application/json 2 (e5be5b71)
+2017-02-28T22:05:53.1187366+09:00 0HL2VR94NV0LN [ERR] Sequence contains no matching element (c67a310a)
+System.InvalidOperationException: Sequence contains no matching element
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Rikka.Tsab2.Core.Services.BotService..ctor(IBotApi botapi, IBotActionsService botActionsService) in C:\Projects\Rikka\Tsab2\src\Rikka.Tsab2.Core\Services\BotService.cs:line 39
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, ServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitTransient(TransientCallSite transientCallSite, ServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.<>c__DisplayClass16_0.<RealizeService>b__0(ServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Internal.TypeActivatorCache.CreateInstance[TInstance](IServiceProvider serviceProvider, Type implementationType)
+   at Microsoft.AspNetCore.Mvc.Controllers.DefaultControllerFactory.CreateController(ControllerContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAllActionFiltersAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeExceptionFilterAsync>d__25.MoveNext()
+2017-02-28T22:05:53.3835757+09:00 0HL2VR94NV0LN [ERR] Connection id ""0HL2VR94LRI2P"": An unhandled exception was thrown by the application. (8c14976b)
+System.InvalidOperationException: Sequence contains no matching element
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Rikka.Tsab2.Core.Services.BotService..ctor(IBotApi botapi, IBotActionsService botActionsService) in C:\Projects\Rikka\Tsab2\src\Rikka.Tsab2.Core\Services\BotService.cs:line 39
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, ServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitTransient(TransientCallSite transientCallSite, ServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.<>c__DisplayClass16_0.<RealizeService>b__0(ServiceProvider provider)
+   at Microsoft.Extensions.Internal.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Internal.TypeActivatorCache.CreateInstance[TInstance](IServiceProvider serviceProvider, Type implementationType)
+   at Microsoft.AspNetCore.Mvc.Controllers.DefaultControllerFactory.CreateController(ControllerContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAllActionFiltersAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeExceptionFilterAsync>d__25.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAsync>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware.<Invoke>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Hosting.Internal.RequestServicesContainerMiddleware.<Invoke>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame`1.<RequestProcessingAsync>d__2.MoveNext()
+2017-02-28T22:05:53.3860754+09:00 0HL2VR94NV0LN [INF] Request finished in 22972.7899ms 200  (15c52c40)
+2017-02-28T22:06:05.1856186+09:00 0HL2VR94NV0LO [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram application/json 2 (e5be5b71)
+2017-02-28T22:07:21.4921885+09:00 0HL2VRATJTJBB [INF] Request starting HTTP/1.1 GET http://localhost:62653/   (e5be5b71)
+2017-02-28T22:07:21.4921885+09:00 0HL2VRATJTJBA [INF] Request starting HTTP/1.1 DEBUG http://localhost:62653/  0 (e5be5b71)
+2017-02-28T22:07:21.6387331+09:00 0HL2VRATJTJBA [INF] Request finished in 204.4342ms 200  (15c52c40)
+2017-02-28T22:07:22.0528148+09:00 0HL2VRATJTJBB [INF] Request finished in 650.8103ms 404  (15c52c40)
+2017-02-28T22:07:23.3860446+09:00 0HL2VRATJTJBC [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram application/json 2 (e5be5b71)
+2017-02-28T22:08:55.1278538+09:00 0HL2VRBPGU563 [INF] Request starting HTTP/1.1 GET http://localhost:62653/   (e5be5b71)
+2017-02-28T22:08:55.1278538+09:00 0HL2VRBPGU564 [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram application/json 2 (e5be5b71)
+2017-02-28T22:08:55.1278538+09:00 0HL2VRBPGU565 [INF] Request starting HTTP/1.1 DEBUG http://localhost:62653/  0 (e5be5b71)
+2017-02-28T22:08:55.2719033+09:00 0HL2VRBPGU565 [INF] Request finished in 179.7996ms 200  (15c52c40)
+2017-02-28T22:08:55.6550032+09:00 0HL2VRBPGU563 [INF] Request finished in 585.4353ms 404  (15c52c40)
+2017-02-28T22:10:03.1231065+09:00 0HL2VRCDPB97P [INF] Request starting HTTP/1.1 GET http://localhost:62653/   (e5be5b71)
+2017-02-28T22:10:03.1231065+09:00 0HL2VRCDPB97O [INF] Request starting HTTP/1.1 DEBUG http://localhost:62653/  0 (e5be5b71)
+2017-02-28T22:10:03.2681253+09:00 0HL2VRCDPB97O [INF] Request finished in 204.8391ms 200  (15c52c40)
+2017-02-28T22:10:03.6262239+09:00 0HL2VRCDPB97P [INF] Request finished in 594.2828ms 404  (15c52c40)
+2017-02-28T22:10:12.7367999+09:00 0HL2VRCDPB97Q [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram application/json 2 (e5be5b71)
+2017-02-28T22:11:08.6382462+09:00 0HL2VRCDPB97Q [INF] Executing action method "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" with arguments (["Rikka.TelegamClasses.Models.UpdateModel"]) - ModelState is Valid (ba7f4ac2)
+2017-02-28T22:11:18.5813560+09:00 0HL2VRCDPB97Q [INF] Executed action "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" in 65743.0875ms (afa2e885)
+2017-02-28T22:11:18.5883589+09:00 0HL2VRCDPB97Q [INF] Request finished in 65851.5282ms 200  (15c52c40)
+2017-02-28T22:15:42.9470517+09:00 0HL2VRCDPB97R [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram application/json 83 (e5be5b71)
+2017-02-28T22:16:00.0384902+09:00 0HL2VRCDPB97R [INF] Executing action method "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" with arguments (["Rikka.TelegamClasses.Models.UpdateModel"]) - ModelState is Valid (ba7f4ac2)
+2017-02-28T22:16:09.8012381+09:00 0HL2VRCDPB97R [INF] Executed DbCommand (142ms) [Parameters=[@__chatId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [f].[Id], [f].[ChatId], [f].[CreatedOn], [f].[State], [f].[StateParams], [f].[Type]
+FROM [Chat] AS [f]
+WHERE [f].[ChatId] = @__chatId_0 (6438bdd5)
+2017-02-28T22:16:24.9848250+09:00 0HL2VRCDPB97R [INF] Executed DbCommand (9ms) [Parameters=[@__chatId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [f].[Id], [f].[ChatId], [f].[CreatedOn], [f].[State], [f].[StateParams], [f].[Type]
+FROM [Chat] AS [f]
+WHERE [f].[ChatId] = @__chatId_0 (6438bdd5)
+2017-02-28T22:17:21.0357596+09:00 0HL2VRCDPB97R [ERR] data (5eb5e655)
+System.ArgumentException: data
+   at Rikka.TelegramBotCore.BotApi.<BotMethod>d__10`1.MoveNext() in C:\Projects\Rikka\TelegramBot\src\Rikka.TelegramBotCore\IBotApi.cs:line 101
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Rikka.Tsab2.Core.Services.BotService.<Send>d__13.MoveNext() in C:\Projects\Rikka\Tsab2\src\Rikka.Tsab2.Core\Services\BotService.cs:line 104
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at Rikka.Tsab2.Endpoint.Controllers.TelegramController.<Webhook>d__4.MoveNext() in C:\Projects\Rikka\Tsab2\src\Rikka.Tsab2.Endpoint\Controllers\TelegramController.cs:line 55
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionFilterAsync>d__28.MoveNext()
+2017-02-28T22:17:21.4821403+09:00 0HL2VRCDPB97R [ERR] Connection id ""0HL2VRCDMVS3I"": An unhandled exception was thrown by the application. (8c14976b)
+System.ArgumentException: data
+   at Rikka.TelegramBotCore.BotApi.<BotMethod>d__10`1.MoveNext() in C:\Projects\Rikka\TelegramBot\src\Rikka.TelegramBotCore\IBotApi.cs:line 101
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Rikka.Tsab2.Core.Services.BotService.<Send>d__13.MoveNext() in C:\Projects\Rikka\Tsab2\src\Rikka.Tsab2.Core\Services\BotService.cs:line 104
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at Rikka.Tsab2.Endpoint.Controllers.TelegramController.<Webhook>d__4.MoveNext() in C:\Projects\Rikka\Tsab2\src\Rikka.Tsab2.Endpoint\Controllers\TelegramController.cs:line 55
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionFilterAsync>d__28.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAsync>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware.<Invoke>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Hosting.Internal.RequestServicesContainerMiddleware.<Invoke>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame`1.<RequestProcessingAsync>d__2.MoveNext()
+2017-02-28T22:17:21.4856383+09:00 0HL2VRCDPB97R [INF] Request finished in 98563.2451ms 200  (15c52c40)
+2017-02-28T23:10:10.2025558+09:00 0HL2VSE0P63AR [INF] Request starting HTTP/1.1 DEBUG http://localhost:62653/  0 (e5be5b71)
+2017-02-28T23:10:10.2025558+09:00 0HL2VSE0P63AS [INF] Request starting HTTP/1.1 GET http://localhost:62653/   (e5be5b71)
+2017-02-28T23:10:10.4545550+09:00 0HL2VSE0P63AR [INF] Request finished in 306.2745ms 200  (15c52c40)
+2017-02-28T23:10:11.2665544+09:00 0HL2VSE0P63AS [INF] Request finished in 1155.3093ms 404  (15c52c40)
+2017-02-28T23:27:43.3671517+09:00 0HL2VSNQKU431 [INF] Request starting HTTP/1.1 DEBUG http://localhost:62653/  0 (e5be5b71)
+2017-02-28T23:27:43.3671517+09:00 0HL2VSNQKU432 [INF] Request starting HTTP/1.1 GET http://localhost:62653/   (e5be5b71)
+2017-02-28T23:27:44.0976531+09:00 0HL2VSNQKU431 [INF] Request finished in 606.114ms 200  (15c52c40)
+2017-02-28T23:27:45.5106521+09:00 0HL2VSNQKU432 [INF] Request finished in 2247.2518ms 404  (15c52c40)
+2017-02-28T23:28:17.4367882+09:00 0HL2VSNQKU433 [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs application/json 2 (e5be5b71)
+2017-02-28T23:28:28.2002671+09:00 0HL2VSNQKU433 [INF] Executing action method "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" with arguments (["244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs", "Rikka.TelegamClasses.Models.UpdateModel"]) - ModelState is Valid (ba7f4ac2)
+2017-02-28T23:28:50.3255309+09:00 0HL2VSNQKU433 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-02-28T23:28:50.4245499+09:00 0HL2VSNQKU433 [INF] Executed action "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" in 32876.3378ms (afa2e885)
+2017-02-28T23:28:50.4315466+09:00 0HL2VSNQKU433 [INF] Request finished in 32995.4271ms 200 application/json; charset=utf-8 (15c52c40)
+2017-02-28T23:28:59.3789265+09:00 0HL2VSNQKU434 [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs application/json 2 (e5be5b71)
+2017-02-28T23:29:05.1909755+09:00 0HL2VSNQKU434 [INF] Executing action method "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" with arguments (["244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs", "Rikka.TelegamClasses.Models.UpdateModel"]) - ModelState is Valid (ba7f4ac2)
+2017-02-28T23:29:16.7492384+09:00 0HL2VSNQKU434 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-02-28T23:29:16.7552412+09:00 0HL2VSNQKU434 [INF] Executed action "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" in 17369.74ms (afa2e885)
+2017-02-28T23:29:16.7592376+09:00 0HL2VSNQKU434 [INF] Request finished in 17380.5574ms 200 application/json; charset=utf-8 (15c52c40)
+2017-02-28T23:29:39.4800876+09:00 0HL2VSOT88BUS [INF] Request starting HTTP/1.1 DEBUG http://localhost:62653/  0 (e5be5b71)
+2017-02-28T23:29:39.4800876+09:00 0HL2VSOT88BUR [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs application/json 2 (e5be5b71)
+2017-02-28T23:29:39.4800876+09:00 0HL2VSOT88BUQ [INF] Request starting HTTP/1.1 GET http://localhost:62653/   (e5be5b71)
+2017-02-28T23:29:39.6176057+09:00 0HL2VSOT88BUS [INF] Request finished in 193.0443ms 200  (15c52c40)
+2017-02-28T23:29:39.9736871+09:00 0HL2VSOT88BUQ [INF] Request finished in 571.8975ms 404  (15c52c40)
+2017-02-28T23:29:43.9214342+09:00 0HL2VSOT88BUR [INF] Executing action method "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" with arguments (["244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs", "Rikka.TelegamClasses.Models.UpdateModel"]) - ModelState is Valid (ba7f4ac2)
+2017-02-28T23:29:44.9341224+09:00 0HL2VSOT88BUR [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-02-28T23:29:45.0071315+09:00 0HL2VSOT88BUR [INF] Executed action "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" in 4952.28ms (afa2e885)
+2017-02-28T23:29:45.0131258+09:00 0HL2VSOT88BUR [INF] Request finished in 5610.6663ms 200 application/json; charset=utf-8 (15c52c40)
+2017-02-28T23:29:49.8707270+09:00 0HL2VSOT88BUT [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs application/json 2 (e5be5b71)
+2017-02-28T23:29:53.4861954+09:00 0HL2VSOT88BUT [INF] Executing action method "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" with arguments (["244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs", "Rikka.TelegamClasses.Models.UpdateModel"]) - ModelState is Valid (ba7f4ac2)
+2017-02-28T23:29:54.3447431+09:00 0HL2VSOT88BUT [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-02-28T23:29:54.3567282+09:00 0HL2VSOT88BUT [INF] Executed action "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" in 4474.1363ms (afa2e885)
+2017-02-28T23:29:54.3617253+09:00 0HL2VSOT88BUT [INF] Request finished in 4489.9138ms 200 application/json; charset=utf-8 (15c52c40)
+2017-02-28T23:32:28.7696109+09:00 0HL2VSQFMN927 [INF] Request starting HTTP/1.1 GET http://localhost:62653/   (e5be5b71)
+2017-02-28T23:32:28.7696109+09:00 0HL2VSQFMN928 [INF] Request starting HTTP/1.1 DEBUG http://localhost:62653/  0 (e5be5b71)
+2017-02-28T23:32:28.9606442+09:00 0HL2VSQFMN928 [INF] Request finished in 254.4081ms 200  (15c52c40)
+2017-02-28T23:32:29.3847525+09:00 0HL2VSQFMN927 [INF] Request finished in 705.5817ms 404  (15c52c40)
+2017-02-28T23:32:31.3432754+09:00 0HL2VSQFMN929 [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs application/json 2 (e5be5b71)
+2017-02-28T23:32:40.9058113+09:00 0HL2VSQFMN929 [INF] Executing action method "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" with arguments (["244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs", "Rikka.TelegamClasses.Models.UpdateModel"]) - ModelState is Valid (ba7f4ac2)
+2017-02-28T23:32:42.0505113+09:00 0HL2VSQFMN929 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-02-28T23:32:42.1275168+09:00 0HL2VSQFMN929 [INF] Executed action "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" in 10677.7598ms (afa2e885)
+2017-02-28T23:32:42.1325264+09:00 0HL2VSQFMN929 [INF] Request finished in 10788.7047ms 200 application/json; charset=utf-8 (15c52c40)
+2017-02-28T23:32:48.8144127+09:00 0HL2VSQFMN92A [INF] Request starting HTTP/1.1 POST http://localhost:62653/Telegram244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs application/json 2 (e5be5b71)
+2017-02-28T23:32:55.9836464+09:00 0HL2VSQFMN92A [INF] Executing action method "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" with arguments (["244732989:AAFIJC1DNmetJcRhF8YPY-TPUxKJpOgs2vs", "Rikka.TelegamClasses.Models.UpdateModel"]) - ModelState is Valid (ba7f4ac2)
+2017-02-28T23:32:58.8864263+09:00 0HL2VSQFMN92A [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-02-28T23:32:58.8944310+09:00 0HL2VSQFMN92A [INF] Executed action "Rikka.Tsab2.Endpoint.Controllers.TelegramController.Webhook (Rikka.Tsab2.Endpoint)" in 10071.1703ms (afa2e885)
+2017-02-28T23:32:58.9034319+09:00 0HL2VSQFMN92A [INF] Request finished in 10085.1533ms 200 application/json; charset=utf-8 (15c52c40)

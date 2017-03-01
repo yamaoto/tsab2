@@ -16,6 +16,8 @@ namespace Rikka.Tsab2.Core.Services
         Task<MessageFlow> ChatMessage(string text, string state, MessageModel message);
         Task<MessageFlow> PrivateCommand(string command, MessageModel message);
         Task<MessageFlow> PrivateMessage(string text, string state, MessageModel message);
+
+        Task Send(MessageFlow flow, int chatId);
     }
 
     public class BotService : IBotService
@@ -89,6 +91,18 @@ namespace Rikka.Tsab2.Core.Services
                 return await action.Message(text, state, message);
             }
             return new MessageFlow();
+        }
+
+        public async Task Send(MessageFlow flow, int chatId)
+        {
+            foreach (var item in flow)
+            {
+                if (item.Span.HasValue)
+                    await Task.Delay(item.Span.Value);
+                if (item.Message.ChatId == null)
+                    item.Message.ChatId = chatId;
+                await BotApi.BotMethod<ISendItem>(item.Message);
+            }
         }
     }
 }

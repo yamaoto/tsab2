@@ -14,6 +14,18 @@ namespace Rikka.Tsab2.Database.Context.Entities
 
     public class Chat : IEntity
     {
+        public Chat()
+        {
+
+        }
+
+        public Chat(int chatId,string state, ChatType type)
+        {
+            ChatId = chatId;
+            State = State;
+            Type = type;
+        }
+
         [Key]
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }

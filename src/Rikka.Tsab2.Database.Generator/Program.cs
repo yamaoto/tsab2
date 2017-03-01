@@ -22,7 +22,7 @@ namespace Rikka.Tsab2.Database.Generator
         {
             var builder = new DbContextOptionsBuilder<TsabContext>();
             builder.UseSqlServer(
-                "Server=(localdb)\\mssqllocaldb;Database=tsab2;Trusted_Connection=True;",
+                "Server=tcp:eebwrmoaap.database.windows.net,1433;Database=tsab2;User ID=TsabLogin;Password=;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;",
                  b => b.MigrationsAssembly("Rikka.Tsab2.Database.Generator"));
             return new TsabContext(builder.Options);
         }

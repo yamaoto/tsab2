@@ -25,9 +25,11 @@ namespace Rikka.Tsab2.Core.Services
 
         private IEnumerable<IBotAction> _getActions()
         {
-            var assembly = Assembly.GetEntryAssembly();
-            var actionTypes = assembly.GetExportedTypes()
-                .Where(t => t.GetTypeInfo().GetCustomAttribute<BotActionAttribute>() != null)
+            var assembly = typeof(BotActionsService).GetTypeInfo().Assembly;
+            var exports = assembly.GetExportedTypes();
+            var marked = exports
+                .Where(t => t.GetTypeInfo().GetCustomAttribute<BotActionAttribute>() != null);
+            var actionTypes = marked
                 .Where(t => typeof(IBotAction).IsAssignableFrom(t));
             foreach (var type in actionTypes)
             {
