@@ -32,7 +32,7 @@ namespace Rikka.Tsab2.Core.BotActions
             var keyboad = tags.Select(tag => new KeyboardButtonModel() { Text = tag });
             var reply = new ReplyKeyboardMarkupModel(keyboad);
             await _chatRepository.SetState(message.Chat.Id, "search-choose-tag");
-            return new MessageFlow(new SendMessageModel(message.Chat.Id, "Давай поищем, только скажи по какому тегу?", reply));
+            return new MessageFlow(new SendMessageModel(message.Chat.Id, "Р”Р°РІР°Р№ РїРѕРёС‰РµРј, С‚РѕР»СЊРєРѕ СЃРєР°Р¶Рё РїРѕ РєР°РєРѕРјСѓ С‚РµРіСѓ?", reply));
         }
 
         public async Task<MessageFlow> Message(string text, string state, TelegamClasses.Models.MessageModel message)
@@ -55,16 +55,16 @@ namespace Rikka.Tsab2.Core.BotActions
             if (!_searchService.Results.ContainsKey(message.Chat.Id))
             {
                 await _chatRepository.SetState(message.Chat.Id, "NoState");
-                return new MessageFlow(MessageFlowItem.GetMessage("А ты уверен что производил поиск? Если что, напиши /search для этого..."));
+                return new MessageFlow(MessageFlowItem.GetMessage("Рђ С‚С‹ СѓРІРµСЂРµРЅ С‡С‚Рѕ РїСЂРѕРёР·РІРѕРґРёР» РїРѕРёСЃРє? Р•СЃР»Рё С‡С‚Рѕ, РЅР°РїРёС€Рё /search РґР»СЏ СЌС‚РѕРіРѕ..."));
             }
-            var show = new[] { "покажи", "инфо", "сведения", "инфа", "показать инфу", "показать инфо", "показать" };
-            var post = new[] { "публикуй", "действуй", "в отложку", "вк", "в вк", "паблик", "в паблик", "опубликовать фото", "опубликовать" };
-            var next = new[] { "дальше", "далее", "еще", "следующий", "следующая", "показать следующее" };
+            var show = new[] { "РїРѕРєР°Р¶Рё", "РёРЅС„Рѕ", "СЃРІРµРґРµРЅРёСЏ", "РёРЅС„Р°", "РїРѕРєР°Р·Р°С‚СЊ РёРЅС„Сѓ", "РїРѕРєР°Р·Р°С‚СЊ РёРЅС„Рѕ", "РїРѕРєР°Р·Р°С‚СЊ" };
+            var post = new[] { "РїСѓР±Р»РёРєСѓР№", "РґРµР№СЃС‚РІСѓР№", "РІ РѕС‚Р»РѕР¶РєСѓ", "РІРє", "РІ РІРє", "РїР°Р±Р»РёРє", "РІ РїР°Р±Р»РёРє", "РѕРїСѓР±Р»РёРєРѕРІР°С‚СЊ С„РѕС‚Рѕ", "РѕРїСѓР±Р»РёРєРѕРІР°С‚СЊ" };
+            var next = new[] { "РґР°Р»СЊС€Рµ", "РґР°Р»РµРµ", "РµС‰Рµ", "СЃР»РµРґСѓСЋС‰РёР№", "СЃР»РµРґСѓСЋС‰Р°СЏ", "РїРѕРєР°Р·Р°С‚СЊ СЃР»РµРґСѓСЋС‰РµРµ" };
             var current = _searchService.Results[message.Chat.Id].Current;
             if (current == null)
             {
                 await _chatRepository.SetState(message.Chat.Id, "NoState");
-                return new MessageFlow(MessageFlowItem.GetMessage("На этом все"));
+                return new MessageFlow(MessageFlowItem.GetMessage("РќР° СЌС‚РѕРј РІСЃРµ"));
             }
             if (show.Any(a => a == text))
             {
@@ -82,7 +82,7 @@ namespace Rikka.Tsab2.Core.BotActions
             }
             else
             {
-                return new MessageFlow(MessageFlowItem.GetMessage("Что-то я тебя не понял"));
+                return new MessageFlow(MessageFlowItem.GetMessage("Р§С‚Рѕ-С‚Рѕ СЏ С‚РµР±СЏ РЅРµ РїРѕРЅСЏР»"));
             }
         }
         private async Task<MessageFlow> _pickResults(MessageModel message)
@@ -93,14 +93,14 @@ namespace Rikka.Tsab2.Core.BotActions
             if (item == null)
             {                
                 await _chatRepository.SetState(message.Chat.Id, "NoState");
-                return new MessageFlow(MessageFlowItem.GetMessage("Это все! Действительно все. Больше нету картинок"));
+                return new MessageFlow(MessageFlowItem.GetMessage("Р­С‚Рѕ РІСЃРµ! Р”РµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ РІСЃРµ. Р‘РѕР»СЊС€Рµ РЅРµС‚Сѓ РєР°СЂС‚РёРЅРѕРє"));
             }
             var image = await _searchService.Download(item.ImageUrl);
             var markup = _getMarkup();
             return new MessageFlow()
             {
                 new MessageFlowItem(new SendPhotoModel(message.Chat.Id, image, reply: markup)),
-                MessageFlowItem.GetMessage($"Найдено в '{item.Engine}', рейтинг {item.Score}")
+                MessageFlowItem.GetMessage($"РќР°Р№РґРµРЅРѕ РІ '{item.Engine}', СЂРµР№С‚РёРЅРі {item.Score}")
 
             };
         }
@@ -111,7 +111,7 @@ namespace Rikka.Tsab2.Core.BotActions
                 tag = tag.Substring(1);
             if (tag.Contains(" "))
             {
-                return new MessageFlow(MessageFlowItem.GetMessage("Что-то не похоже на тег..."));
+                return new MessageFlow(MessageFlowItem.GetMessage("Р§С‚Рѕ-С‚Рѕ РЅРµ РїРѕС…РѕР¶Рµ РЅР° С‚РµРі..."));
             }
             await _chatRepository.SetState(message.Chat.Id, "NoState");            
 
@@ -121,7 +121,7 @@ namespace Rikka.Tsab2.Core.BotActions
             var reply = new ReplyKeyboardHideModel() {HideKeyboard = true};
             return new MessageFlow()
             {
-                new MessageFlowItem(new SendMessageModel(message.Chat.Id, "Подожди некоторое время...",replyMarkup:reply)),
+                new MessageFlowItem(new SendMessageModel(message.Chat.Id, "РџРѕРґРѕР¶РґРё РЅРµРєРѕС‚РѕСЂРѕРµ РІСЂРµРјСЏ...",replyMarkup:reply)),
                 MessageFlowItem.GetSticker("BQADBAADTAUAAqKYZgABfaNgr6BIuFIC")
             };
         }
@@ -132,10 +132,10 @@ namespace Rikka.Tsab2.Core.BotActions
             var first = search.Next();
             if (first==null)
             {
-                await _botApi.BotMethod(new SendMessageModel(message.Chat.Id, "Похоже по такому запросу нету ничего..."));
+                await _botApi.BotMethod(new SendMessageModel(message.Chat.Id, "РџРѕС…РѕР¶Рµ РїРѕ С‚Р°РєРѕРјСѓ Р·Р°РїСЂРѕСЃСѓ РЅРµС‚Сѓ РЅРёС‡РµРіРѕ..."));
                 return;
             }
-            await _botApi.BotMethod(new SendMessageModel(message.Chat.Id, "Итак, вот что мне удалось найти по запросу #" + tag));
+            await _botApi.BotMethod(new SendMessageModel(message.Chat.Id, "РС‚Р°Рє, РІРѕС‚ С‡С‚Рѕ РјРЅРµ СѓРґР°Р»РѕСЃСЊ РЅР°Р№С‚Рё РїРѕ Р·Р°РїСЂРѕСЃСѓ #" + tag));
             Thread.Sleep(300);
             var image = await _searchService.Download(first.ImageUrl);
             var markup = _getMarkup();
@@ -145,7 +145,7 @@ namespace Rikka.Tsab2.Core.BotActions
 
         private ReplyKeyboardMarkupModel _getMarkup()
         {
-            var commands = new[] { "Дальше", "Публикуй", "/cansel" };
+            var commands = new[] { "Р”Р°Р»СЊС€Рµ", "РџСѓР±Р»РёРєСѓР№", "/cansel" };
             return new ReplyKeyboardMarkupModel()
             {
                 Keyboard = commands.Select(s => new[] { new KeyboardButtonModel() { Text = s } }).ToArray()
@@ -156,6 +156,6 @@ namespace Rikka.Tsab2.Core.BotActions
         public bool Chat { get; } = true;
         public string[] States => new [] { "search-choose-tag", "search-pick-results" };
         public string CommandName { get; } = "/search";
-        public string Description { get; } = "поиск картинок";
+        public string Description { get; } = "РїРѕРёСЃРє РєР°СЂС‚РёРЅРѕРє";
     }
 }

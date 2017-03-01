@@ -12,12 +12,12 @@ namespace Rikka.Tsab2.Core.BotActions
         public bool Chat => true;
         public string[] States => new[] { "NoState" };
         public string CommandName => "/start";
-        public string Description => "Приветствие";
+        public string Description => "РџСЂРёРІРµС‚СЃС‚РІРёРµ";
 
         public async Task<MessageFlow> Command(string command, MessageModel message)
         {
-            var msg = $@"Привет, {message.From.FirstName}!
-Я @typical_saitama_adminBot. С моей помощью ты можешь проверять картинки на загрузку в сообщества, для этого просто введи /public или /help для получения всех подказок";
+            var msg = $@"РџСЂРёРІРµС‚, {message.From.FirstName}!
+РЇ @typical_saitama_adminBot. РЎ РјРѕРµР№ РїРѕРјРѕС‰СЊСЋ С‚С‹ РјРѕР¶РµС€СЊ РїСЂРѕРІРµСЂСЏС‚СЊ РєР°СЂС‚РёРЅРєРё РЅР° Р·Р°РіСЂСѓР·РєСѓ РІ СЃРѕРѕР±С‰РµСЃС‚РІР°, РґР»СЏ СЌС‚РѕРіРѕ РїСЂРѕСЃС‚Рѕ РІРІРµРґРё /public РёР»Рё /help РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РІСЃРµС… РїРѕРґРєР°Р·РѕРє";
             var result = new MessageFlow()
             {
                 MessageFlowItem.GetMessage(msg),

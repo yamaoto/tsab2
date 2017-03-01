@@ -10,6 +10,7 @@ using Rikka.Tsab2.Core.Services;
 using Rikka.Tsab2.Database.Context;
 using Rikka.Tsab2.Database.Repositories;
 using Rikka.Tsab2.Endpoint.App.Filters;
+using System.IO;
 
 namespace Rikka.Tsab2.Endpoint
 {
@@ -67,13 +68,18 @@ namespace Rikka.Tsab2.Endpoint
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            app.UseStaticFiles();
-            app.UseMvc();
+        {            
             app.UseDeveloperExceptionPage();
+            app.UseDatabaseErrorPage();
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
-            loggerFactory.AddFile("Logs/tsab2-{Date}.txt");
+
+            //if (!Directory.Exists("Logs"))
+            //    Directory.CreateDirectory("Logs");
+            //loggerFactory.AddFile("Logs/tsab2-{Date}.txt");
+
+            app.UseStaticFiles();
+            app.UseMvc();
         }
     }
 }

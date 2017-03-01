@@ -31,22 +31,26 @@ namespace Rikka.Tsab2.Database.Repositories
                 item.Id=Guid.NewGuid();
             item.CreatedOn = DateTime.Now;
             await DbSet.AddAsync(item);
+            await Context.SaveChangesAsync();
         }
 
         public async Task Update(T item)
         {
             await Task.Run(() => DbSet.Update(item));
+            await Context.SaveChangesAsync();
         }
 
         public async Task Delete(Guid id)
         {
             var item = await GetById(id);
             await Delete(item);
+            await Context.SaveChangesAsync();
         }
 
         public async Task Delete(T item)
         {
             await Task.Run(() => DbSet.Remove(item));
+            await Context.SaveChangesAsync();
         }
 
     }
@@ -82,6 +86,7 @@ namespace Rikka.Tsab2.Database.Repositories
                 item.State = state;
                 item.StateParams = stateParams;
             }
+            await Context.SaveChangesAsync();
         }
     }
 
