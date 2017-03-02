@@ -96,6 +96,11 @@ namespace Rikka.Tsab2.Core.Services.SearchEngine
             }
             return result.ToArray();
         }
+
+        public string DefaultToken => "XccBbn5kdxb3B7ouiulXNWRyZgNDrUf8wTm252aUHyGNIDX4KY";
+        public string DefaultAdditional => "";
+        public string ConfigureUrl { get; } = "https://www.tumblr.com/oauth/apps";
+        public string ConfigureDescription { get; } = "Пройди по этой ссылке, и нажми там на кнопку \"Зарегистрировать приложение\" и скажи мне \"Ключ клиента OAuth\". Удачи там!";
     }
 
     public class TumblrSearchResultItem : ISearchResultItem

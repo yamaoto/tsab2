@@ -30,6 +30,8 @@ namespace Rikka.Tsab2.Database.Context.Entities
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
 
+        public string FullName { get; set; }
+
         public int ChatId { get; set; }
 
         public ChatType Type { get; set; }
@@ -108,6 +110,17 @@ namespace Rikka.Tsab2.Database.Context.Entities
 
     public class SearchEngine:IEntity
     {
+        public SearchEngine()
+        {
+            
+        }
+
+        public SearchEngine(string name,int chatId)
+        {
+            Name = name;
+            ChatId = chatId;
+        }
+
         [Key]
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
@@ -119,6 +132,48 @@ namespace Rikka.Tsab2.Database.Context.Entities
         public string Token { get; set; }
         public string Additional { get; set; }
     }
+
+    public class SearchHistory: IEntity
+    {
+        [Key]
+        public Guid Id { get; set; }
+        public DateTime CreatedOn { get; set; }
+
+        public int ChatId { get; set; }
+        public string Expression { get; set; }
+    }
+
+    public class TextAnalytics : IEntity
+    {
+        [Key]
+        public Guid Id { get; set; }
+        public DateTime CreatedOn { get; set; }
+
+        public string Text { get; set; }
+        public string Analytics { get; set; }
+    }
+
+    public class StickerAnalytics : IEntity
+    {
+        [Key]
+        public Guid Id { get; set; }
+        public DateTime CreatedOn { get; set; }
+
+        public string Sticker { get; set; }
+        public string Analytics { get; set; }
+    }
+
+    public class WordProcessing: IEntity
+    {
+        [Key]
+        public Guid Id { get; set; }
+        public DateTime CreatedOn { get; set; }
+
+        public string Expression { get; set; }
+        public string Tags { get; set; }
+        public string Analytics { get; set; }
+    }
+
 
     public enum VkWallType
     {

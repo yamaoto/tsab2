@@ -65,6 +65,7 @@ namespace Rikka.Tsab2.Database.Repositories
 
         Task<Chat> GetyChatId(int chatId);
         Task SetState(int chatId, string state, string stateParams = null);
+        Task<string> GetStateParams(int chatId);
     }
 
     public class ChatRepository : BaseRepository<Chat>, IChatRepository
@@ -87,6 +88,12 @@ namespace Rikka.Tsab2.Database.Repositories
                 item.StateParams = stateParams;
             }
             await Context.SaveChangesAsync();
+        }
+
+        public async Task<string> GetStateParams(int chatId)
+        {
+            var item = await  DbSet.FirstOrDefaultAsync(f => f.ChatId == chatId);
+            return item?.StateParams;
         }
     }
 
@@ -162,6 +169,7 @@ namespace Rikka.Tsab2.Database.Repositories
         Task Delete(Guid id);
         Task Delete(SearchEngine item);
         Task<SearchEngine> GetEngine(string name, int chatId);
+        Task<IEnumerable<SearchEngine>>  GetEngines(int chatId);
     }
 
     public class SearchEngineRepository : BaseRepository<SearchEngine>, ISearchEngineRepository
@@ -173,6 +181,11 @@ namespace Rikka.Tsab2.Database.Repositories
         public async Task<SearchEngine> GetEngine(string name, int chatId)
         {
             return await DbSet.FirstOrDefaultAsync(f => f.Name == name && f.ChatId == chatId);
+        }
+
+        public async Task<IEnumerable<SearchEngine>> GetEngines(int chatId)
+        {
+            return DbSet.Where(w => w.ChatId == chatId);
         }
     }
 }

@@ -11,6 +11,7 @@ using Rikka.Tsab2.Database.Context;
 using Rikka.Tsab2.Database.Repositories;
 using Rikka.Tsab2.Endpoint.App.Filters;
 using System.IO;
+using Rikka.Tsab2.Core.Workers;
 
 namespace Rikka.Tsab2.Endpoint
 {
@@ -30,7 +31,7 @@ namespace Rikka.Tsab2.Endpoint
 
         public IConfigurationRoot Configuration { get; }
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services,ILoggerFactory loggerFactory)
         {
             #region database
             var connection = Configuration["Database:ConnectionStrings:DefaultDatabase"];
@@ -51,6 +52,7 @@ namespace Rikka.Tsab2.Endpoint
             #region services
             services.AddTransient<ISearchService, SearchService>();
             services.AddTransient<ExceptionFilter>();
+            services.AddSingleton<IWorkerService>();
             #endregion
 
             #region bot
@@ -67,7 +69,7 @@ namespace Rikka.Tsab2.Endpoint
 
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IWorkerService workerService)
         {            
             app.UseDeveloperExceptionPage();
             app.UseDatabaseErrorPage();
@@ -80,6 +82,8 @@ namespace Rikka.Tsab2.Endpoint
 
             app.UseStaticFiles();
             app.UseMvc();
+
+            workerService.RegisterWorker<SearchWorker,SearchWorkerParameter>("search");
         }
     }
 }

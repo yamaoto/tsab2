@@ -20,8 +20,8 @@ namespace Rikka.Tsab2.Core.BotActions
 Я @typical_saitama_adminBot. С моей помощью ты можешь проверять картинки на загрузку в сообщества, для этого просто введи /public или /help для получения всех подказок";
             var result = new MessageFlow()
             {
-                MessageFlowItem.GetMessage(msg),
-                MessageFlowItem.GetSticker("BQADBAADtwMAAqKYZgABJFsIZLA51N0C")
+                MessageFlowItem.Message(msg),
+                MessageFlowItem.Sticker("BQADBAADtwMAAqKYZgABJFsIZLA51N0C")
             };
             return result;
         }
@@ -29,7 +29,7 @@ namespace Rikka.Tsab2.Core.BotActions
         
         public async Task<MessageFlow> Message(string text, string state, MessageModel message)
         {
-            return new MessageFlow(MessageFlowItem.GetMessage(".-."));
+            return new MessageFlow(MessageFlowItem.Message(".-."));
         }
     }
 }

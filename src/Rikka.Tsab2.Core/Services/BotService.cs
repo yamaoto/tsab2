@@ -99,9 +99,9 @@ namespace Rikka.Tsab2.Core.Services
             {
                 if (item.Span.HasValue)
                     await Task.Delay(item.Span.Value);
-                if (item.Message.ChatId == null)
-                    item.Message.ChatId = chatId;
-                await BotApi.BotMethod<ISendItem>(item.Message);
+                if (item.SendItem.ChatId == null)
+                    item.SendItem.ChatId = chatId;
+                await BotApi.BotMethod<ISendItem>(item.SendItem);
             }
         }
     }

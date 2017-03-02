@@ -15,6 +15,7 @@ namespace Rikka.Tsab2.Core.Services
 
         IReadOnlyDictionary<int, SearchResult> Results { get; }
         Task<byte[]> Download(string imageUrl);
+        Task<bool> CheckEngines(int chatId);
     }
 
     public class SearchService : ISearchService
@@ -28,6 +29,7 @@ namespace Rikka.Tsab2.Core.Services
         public SearchService(ISearchEngineRepository searchEngineRepository)
         {
             _searchEngineRepository = searchEngineRepository;
+            Engines = GetEngines();
         }
 
         public async Task<SearchResult> Search(int chatId, string tag, int totalForEach, DateTime? after)
@@ -38,8 +40,10 @@ namespace Rikka.Tsab2.Core.Services
                 IEnumerable<ISearchResultItem> inner;
                 try
                 {
-                    var engne = await _searchEngineRepository.GetEngine(engine.EngineName, chatId);
-                    inner = await engine.Search(tag, totalForEach, after,engne.Token,engne.Additional);
+                    var info = await _searchEngineRepository.GetEngine(engine.EngineName, chatId);
+                    if (info == null)
+                        continue;
+                    inner = await engine.Search(tag, totalForEach, after, info.Token, info.Additional);
                 }
                 catch
                 {
@@ -68,12 +72,24 @@ namespace Rikka.Tsab2.Core.Services
             var client = new HttpClient();
             return await client.GetByteArrayAsync(imageUrl);
         }
+
+        public async Task<bool> CheckEngines(int chatId)
+        {
+            var engines = await _searchEngineRepository.GetEngines(chatId);
+            return engines.Any();
+
+        }
     }
 
     public interface ISearchEngine
     {
         string EngineName { get; }
         Task<IEnumerable<ISearchResultItem>> Search(string tag, int count, DateTime? after, string token, string additional);
+
+        string DefaultToken { get; }
+        string DefaultAdditional { get; }
+        string ConfigureUrl { get; }
+        string ConfigureDescription { get; }
     }
 
     public class SearchResult

@@ -32,5 +32,10 @@ namespace Rikka.Tsab2.Database.Context
         public DbSet<VkPhoto> VkPhoto { get; set; }
         public DbSet<VkAuth> VkAuth { get; set; }
         public DbSet<SearchEngine> SearchEngine { get; set; }
+
+        public DbSet<SearchHistory> SearchHistory { get; set; }
+        public DbSet<TextAnalytics> TextAnalytics { get; set; }
+        public DbSet<StickerAnalytics> StickerAnalytics { get; set; }
+        public DbSet<WordProcessing> WordProcessing { get; set; }
     }
 }
