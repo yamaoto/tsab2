@@ -49,7 +49,7 @@ namespace Rikka.Tsab2.Core.Workers
             var image = await _searchService.Download(first.ImageUrl);
             var markup = _botHelper.SingleReply(new[] { "Дальше", "Публикуй", "/cansel" });
             await _chatRepository.SetState(chatId, "NoState");
-            await _botApi.BotMethod(new SendPhotoModel(chatId, image, reply: markup));
+            await _botApi.BotMethod(new SendPhotoModel(chatId, image, replyMarkup: markup));
         }
         
     }

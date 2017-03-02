@@ -36,7 +36,7 @@ namespace Rikka.Tsab2.Database.Repositories
 
         public async Task Update(T item)
         {
-            await Task.Run(() => DbSet.Update(item));
+            DbSet.Update(item);
             await Context.SaveChangesAsync();
         }
 
@@ -49,7 +49,7 @@ namespace Rikka.Tsab2.Database.Repositories
 
         public async Task Delete(T item)
         {
-            await Task.Run(() => DbSet.Remove(item));
+            DbSet.Remove(item);
             await Context.SaveChangesAsync();
         }
 
@@ -185,7 +185,65 @@ namespace Rikka.Tsab2.Database.Repositories
 
         public async Task<IEnumerable<SearchEngine>> GetEngines(int chatId)
         {
-            return DbSet.Where(w => w.ChatId == chatId);
+            return await DbSet.Where(w => w.ChatId == chatId).ToArrayAsync();
+        }
+    }
+
+    public interface ISearchHistoryRepository
+    {
+        Task<SearchHistory> GetById(Guid id);
+        Task Insert(SearchHistory item);
+        Task Update(SearchHistory item);
+        Task Delete(Guid id);
+        Task Delete(SearchHistory item);
+        Task<Dictionary<string,int>>  GetPopularTags(int chatId, int limit=5);
+    }
+
+    public class SearchHistoryRepository : BaseRepository<SearchHistory>, ISearchHistoryRepository
+    {
+        public SearchHistoryRepository(TsabContext context) : base(context)
+        {
+        }
+
+        public async Task<Dictionary<string, int>> GetPopularTags(int chatId, int limit = 5)
+        {
+            var items = DbSet.Where(w => w.ChatId == chatId);
+            var tags =
+                await items.GroupBy(g => g.Expression)
+                    .Select(g => new {g.Key, Count = g.Count()})
+                    .OrderByDescending(o => o.Count)
+                    .Take(limit)
+                    .ToArrayAsync();
+            return tags.ToDictionary(k => k.Key, v => v.Count);
+        }
+    }
+
+    public interface IDataAnalyticsRepository
+    {
+        Task<DataAnalytics> GetByData(string data);
+        Task<DataAnalytics> GetById(Guid id);
+        Task Insert(DataAnalytics item);
+        Task Update(DataAnalytics item);
+        Task Delete(Guid id);
+        Task Delete(DataAnalytics item);
+        Task<IEnumerable<DataAnalytics>> GetByType(string type);
+    }
+
+    public class DataAnalyticsRepository : BaseRepository<DataAnalytics>, IDataAnalyticsRepository
+    {
+        public DataAnalyticsRepository(TsabContext context) : base(context)
+        {
+        }
+
+        public async Task<DataAnalytics> GetByData(string data)
+        {
+            return await DbSet.FirstOrDefaultAsync(f => f.Data==data);
+        }
+
+        public async Task<IEnumerable<DataAnalytics>> GetByType(string type)
+        {
+            var items = DbSet.Where(w => w.Type == type);
+            return await items.ToArrayAsync();
         }
     }
 }

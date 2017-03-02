@@ -36,7 +36,8 @@ namespace Rikka.Tsab2.Core.BotActions
             }
             else
             {
-                return new MessageFlow().Message("o_O");
+                return new MessageFlow()
+                    .Message("o_O");
             }
         }
     }

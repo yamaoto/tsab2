@@ -8,13 +8,13 @@ namespace Rikka.Tsab2.Core.Services
 {
     public interface IBotHelper
     {
-        ReplyKeyboardMarkupModel SingleReply(string[] commands);
+        ReplyKeyboardMarkupModel SingleReply(IEnumerable<string> commands);
         ReplyKeyboardHideModel Hide();
     }
 
     public class BotHelper : IBotHelper
     {
-        public ReplyKeyboardMarkupModel SingleReply(string[] commands)
+        public ReplyKeyboardMarkupModel SingleReply(IEnumerable<string> commands)
         {
             return new ReplyKeyboardMarkupModel()
             {
@@ -25,14 +25,5 @@ namespace Rikka.Tsab2.Core.Services
         {
             return new ReplyKeyboardHideModel() {HideKeyboard = true};
         }
-    }
-
-    public class TextCheckerService
-    {
-        
-    }
-    public class StickersExplorerService
-    {
-        
     }
 }

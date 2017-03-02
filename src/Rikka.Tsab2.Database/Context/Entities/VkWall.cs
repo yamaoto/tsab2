@@ -143,34 +143,44 @@ namespace Rikka.Tsab2.Database.Context.Entities
         public string Expression { get; set; }
     }
 
-    public class TextAnalytics : IEntity
+    public class DataAnalytics : IEntity
     {
+        public DataAnalytics()
+        {
+            
+        }
+
+
+        public DataAnalytics(string data, string type, string dataInformation, string analytics)
+        {
+            Data = data;
+            Type = type;
+            DataInformation = dataInformation;
+            Analytics = analytics;
+        }
+
         [Key]
         public Guid Id { get; set; }
         public DateTime CreatedOn { get; set; }
 
-        public string Text { get; set; }
-        public string Analytics { get; set; }
-    }
+        /// <summary>
+        /// Анализируемые данные
+        /// </summary>
+        public string Data { get; set; }
 
-    public class StickerAnalytics : IEntity
-    {
-        [Key]
-        public Guid Id { get; set; }
-        public DateTime CreatedOn { get; set; }
+        /// <summary>
+        /// Тип анализируемых данных
+        /// </summary>
+        public string Type { get; set; }
 
-        public string Sticker { get; set; }
-        public string Analytics { get; set; }
-    }
+        /// <summary>
+        /// Информация об анализируемых данных, в соответствии с типом
+        /// </summary>
+        public string DataInformation { get; set; }
 
-    public class WordProcessing: IEntity
-    {
-        [Key]
-        public Guid Id { get; set; }
-        public DateTime CreatedOn { get; set; }
-
-        public string Expression { get; set; }
-        public string Tags { get; set; }
+        /// <summary>
+        /// Данные для анализа
+        /// </summary>
         public string Analytics { get; set; }
     }
 

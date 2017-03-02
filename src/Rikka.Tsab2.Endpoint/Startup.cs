@@ -47,6 +47,10 @@ namespace Rikka.Tsab2.Endpoint
             services.AddTransient<IVkPhotoRepository, VkPhotoRepository>();
             services.AddTransient<IVkAuthRepository, VkAuthRepository>();
             services.AddTransient<ISearchEngineRepository, SearchEngineRepository>();
+
+            services.AddTransient<ISearchHistoryRepository, SearchHistoryRepository>();
+            services.AddTransient<IDataAnalyticsRepository, DataAnalyticsRepository>();
+
             #endregion
 
             #region services

@@ -34,8 +34,6 @@ namespace Rikka.Tsab2.Database.Context
         public DbSet<SearchEngine> SearchEngine { get; set; }
 
         public DbSet<SearchHistory> SearchHistory { get; set; }
-        public DbSet<TextAnalytics> TextAnalytics { get; set; }
-        public DbSet<StickerAnalytics> StickerAnalytics { get; set; }
-        public DbSet<WordProcessing> WordProcessing { get; set; }
+        public DbSet<DataAnalytics> DataAnalytics { get; set; }
     }
 }

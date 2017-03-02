@@ -39,13 +39,11 @@ namespace Rikka.Tsab2.Core.BotActions
             if(await _searchService.CheckEngines(message.Chat.Id))
             {
                 return new MessageFlow(new SendMessageModel(message.Chat.Id, "Похоже что у тебя еще не настроены поисковые системы. Сделай для этого /searchsetup"));
-                
             }
-            //TODO: vzzyat popularnie dlya etogo chatta tegi
-            var tags = new[] { "#opm", "#one_punch_man", "#onepunchman", "#saitama", "#genos" };
-
+            var popular = await _searchService._getPopularTags(message.Chat.Id);
             await _chatRepository.SetState(message.Chat.Id, BotStates.SearchChooseTag);
-            return new MessageFlow(new SendMessageModel(message.Chat.Id, "Давай поищем, только скажи по какому тегу?", _botHelper.SingleReply(tags)));
+            return new MessageFlow()
+                .Message("Давай поищем, только скажи по какому тегу?", replyMarkup:_botHelper.SingleReply(popular));
         }
 
         private async Task<MessageFlow> _steps(string text, MessageModel message)
@@ -53,7 +51,8 @@ namespace Rikka.Tsab2.Core.BotActions
             if (!_searchService.Results.ContainsKey(message.Chat.Id))
             {
                 await _chatRepository.SetState(message.Chat.Id, BotStates.NoState);
-                return new MessageFlow(MessageFlowItem.Message("А ты уверен что производил поиск? Если что, напиши /search для этого..."));
+                return new MessageFlow()
+                    .Message("А ты уверен что производил поиск? Если что, напиши /search для этого...");
             }
             var show = new[] { "покажи", "инфо", "сведения", "инфа", "показать инфу", "показать инфо", "показать" };
             var post = new[] { "публикуй", "действуй", "в отложку", "вк", "в вк", "паблик", "в паблик", "опубликовать фото", "опубликовать" };
@@ -62,25 +61,25 @@ namespace Rikka.Tsab2.Core.BotActions
             if (current == null)
             {
                 await _chatRepository.SetState(message.Chat.Id, BotStates.NoState);
-                return new MessageFlow(MessageFlowItem.Message("На этом все"));
+                return new MessageFlow().Message("На этом все");
             }
             if (show.Any(a => a == text))
             {
                 return new MessageFlow()
-                {
-                    MessageFlowItem.Message(current.ItemUrl),
-                    MessageFlowItem.Message(current.Description)
-                };
+                    .Message(current.ItemUrl)
+                    .Message(current.Description);
             } else if (post.Any(a => a == text))
             {
                 throw new NotImplementedException();
+
             } else if (next.Any(a => a == text))
             {
                 return await _pickResults(message);
             }
             else
             {
-                return new MessageFlow(MessageFlowItem.Message("Что-то я тебя не понял"));
+                return new MessageFlow()
+                    .Message("Что-то я тебя не понял");
             }
         }
         private async Task<MessageFlow> _pickResults(MessageModel message)
@@ -91,16 +90,13 @@ namespace Rikka.Tsab2.Core.BotActions
             if (item == null)
             {                
                 await _chatRepository.SetState(message.Chat.Id, BotStates.NoState);
-                return new MessageFlow(MessageFlowItem.Message("Это все! Действительно все. Больше нету картинок"));
+                return new MessageFlow()
+                    .Message("Это все! Действительно все. Больше нету картинок");
             }
-            var image = await _searchService.Download(item.ImageUrl);
-            var markup = _botHelper.SingleReply(new[] { "Дальше", "Публикуй", "/cansel" });
+            var image = await _searchService.Download(item.ImageUrl);;
             return new MessageFlow()
-            {
-                new MessageFlowItem(new SendPhotoModel(message.Chat.Id, image, replyMarkup: markup)),
-                MessageFlowItem.Message($"Найдено в '{item.Engine}', рейтинг {item.Score}")
-
-            };
+                .Photo(image, replyMarkup: _botHelper.SingleReply(new[] {"Дальше", "Публикуй", "/cansel"}))
+                .Message($"Найдено в '{item.Engine}', рейтинг {item.Score}");
         }
 
         private async Task<MessageFlow> _chooseTag(string tag, MessageModel message)
@@ -109,17 +105,16 @@ namespace Rikka.Tsab2.Core.BotActions
                 tag = tag.Substring(1);
             if (tag.Contains(" "))
             {
-                return new MessageFlow(MessageFlowItem.Message("Что-то не похоже на тег..."));
+                return new MessageFlow()
+                    .Message("Что-то не похоже на тег...");
             }
             await _chatRepository.SetState(message.Chat.Id, BotStates.NoState);
 
             _workerService.PushMessage(new JobMessage("search",new SearchWorkerParameter(message.Chat.Id,message.From.Id,tag)));
 
             return new MessageFlow()
-            {
-                new MessageFlowItem(new SendMessageModel(message.Chat.Id, "Подожди некоторое время...",replyMarkup:_botHelper.Hide())),
-                MessageFlowItem.Sticker("BQADBAADTAUAAqKYZgABfaNgr6BIuFIC")
-            };
+                .Message("Подожди некоторое время...", replyMarkup: _botHelper.Hide())
+                .Sticker("BQADBAADTAUAAqKYZgABfaNgr6BIuFIC");
         }
         
 

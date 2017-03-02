@@ -18,18 +18,15 @@ namespace Rikka.Tsab2.Core.BotActions
         {
             var msg = $@"Привет, {message.From.FirstName}!
 Я @typical_saitama_adminBot. С моей помощью ты можешь проверять картинки на загрузку в сообщества, для этого просто введи /public или /help для получения всех подказок";
-            var result = new MessageFlow()
-            {
-                MessageFlowItem.Message(msg),
-                MessageFlowItem.Sticker("BQADBAADtwMAAqKYZgABJFsIZLA51N0C")
-            };
-            return result;
+            return new MessageFlow().Message(msg)
+                .Sticker("BQADBAADtwMAAqKYZgABJFsIZLA51N0C");
         }
 
         
         public async Task<MessageFlow> Message(string text, string state, MessageModel message)
         {
-            return new MessageFlow(MessageFlowItem.Message(".-."));
+            return new MessageFlow()
+                .Message(".-.");
         }
     }
 }

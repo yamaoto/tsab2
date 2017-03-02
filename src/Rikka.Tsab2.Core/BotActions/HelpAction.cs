@@ -33,7 +33,8 @@ namespace Rikka.Tsab2.Core.BotActions
                 .Where(w => w.CommandName != null && (isPrivate && w.Private) || (!isPrivate && w.Chat))
                 .OrderBy(o => o.CommandName);
             msg = actions.Aggregate(msg, (current, action) => current + $"{action.CommandName} - {action.Description}\r\n");
-            return new MessageFlow(MessageFlowItem.Message(msg));
+            return new MessageFlow()
+                .Message(msg);
         }       
 
         public async Task<MessageFlow> Message(string text, string state, MessageModel message)

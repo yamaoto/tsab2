@@ -33,7 +33,6 @@ namespace Rikka.Tsab2.Endpoint.Controllers
         {
             try
             {
-
                 MessageFlow response = null;
                 if (!string.IsNullOrEmpty(model.Message?.Text) && _botApi.CheckToken(token))
                 {

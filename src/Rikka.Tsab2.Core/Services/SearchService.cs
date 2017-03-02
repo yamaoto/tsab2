@@ -16,19 +16,23 @@ namespace Rikka.Tsab2.Core.Services
         IReadOnlyDictionary<int, SearchResult> Results { get; }
         Task<byte[]> Download(string imageUrl);
         Task<bool> CheckEngines(int chatId);
+
+        Task<IEnumerable<string>> _getPopularTags(int chatId);
     }
 
     public class SearchService : ISearchService
     {
         private readonly ISearchEngineRepository _searchEngineRepository;
+        private readonly ISearchHistoryRepository _searchHistoryRepository;
         public ISearchEngine[] Engines { get; set; }
 
         private readonly Dictionary<int, SearchResult> _results =
             new Dictionary<int, SearchResult>();
 
-        public SearchService(ISearchEngineRepository searchEngineRepository)
+        public SearchService(ISearchEngineRepository searchEngineRepository, ISearchHistoryRepository searchHistoryRepository)
         {
             _searchEngineRepository = searchEngineRepository;
+            _searchHistoryRepository = searchHistoryRepository;
             Engines = GetEngines();
         }
 
@@ -78,6 +82,20 @@ namespace Rikka.Tsab2.Core.Services
             var engines = await _searchEngineRepository.GetEngines(chatId);
             return engines.Any();
 
+        }
+
+        public async Task<IEnumerable<string>> _getPopularTags(int chatId)
+        {
+            var defaults = new[] {"#telegram", "#development","#opm","#one_punch_man","#saitama"};
+            const int limit = 5;
+            var tags = await _searchHistoryRepository.GetPopularTags(chatId, limit);
+            var i = 0;
+            while (tags.Count < limit)
+            {
+                tags.Add(defaults[i],limit-i);
+                i++;
+            }
+            return tags.OrderByDescending(o => o.Value).Select(s => s.Key);
         }
     }
 

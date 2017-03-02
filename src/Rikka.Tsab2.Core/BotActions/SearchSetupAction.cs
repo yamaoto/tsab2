@@ -42,8 +42,8 @@ namespace Rikka.Tsab2.Core.BotActions
         {
             var engines = _searchService.Engines.Select(s => s.EngineName).ToArray();
             await _chatRepository.SetState(message.Chat.Id, BotStates.SearchSetupChooseEngine);
-            return new MessageFlow().Message("Какую поисковую службу?",
-                replyMarkup: _botHelper.SingleReply(engines));
+            return new MessageFlow()
+                .Message("Какую поисковую службу?", replyMarkup: _botHelper.SingleReply(engines));
         }
 
 
@@ -54,12 +54,14 @@ namespace Rikka.Tsab2.Core.BotActions
             if (engines.Contains(text))
             {
                 await _chatRepository.SetState(message.Chat.Id, BotStates.SearchSetupChooseEngine,text);
-                return new MessageFlow().Message("Настроить по умолчанию или специализированно?",
+                return new MessageFlow()
+                    .Message("Настроить по умолчанию или специализированно?",
                     replyMarkup: _botHelper.SingleReply(new[] { "по умолчанию", "специализированно" }));
             }
             else
             {
-                return new MessageFlow().Message("Походу ты в чем то ошибся");
+                return new MessageFlow()
+                    .Message("Походу ты в чем то ошибся");
             }
         }
 
@@ -92,7 +94,8 @@ namespace Rikka.Tsab2.Core.BotActions
             }
             else
             {
-                return new MessageFlow().Message("Что за дичь ты мне тут втираешь?");
+                return new MessageFlow()
+                    .Message("Что за дичь ты мне тут втираешь?");
             }
         }
 
@@ -106,7 +109,9 @@ namespace Rikka.Tsab2.Core.BotActions
                 await _searchEngineRepository.Insert(engine);
             }
 
-            throw new NotImplementedException();
+            engine.Token = text;
+            return new MessageFlow()
+                .Message("Ok");
         }
     }
 }
